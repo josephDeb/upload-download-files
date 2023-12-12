@@ -7,6 +7,7 @@ const Header = () => {
   const [data, setData] = useState([])
 
   useEffect(() => {
+    axios.defaults.withCredentials = true
     axios.get("https://upload-download-files-two.vercel.app/api/items")
     .then(res => {
         setData(res.data.allItem)
