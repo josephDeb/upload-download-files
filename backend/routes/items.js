@@ -4,7 +4,7 @@ import multer from 'multer'
 import path from 'path'
 
 
-import {addItem, getItem, downloadItem, getSingleItem, deleteItem} from '../controllers/items.js'
+import {addItem, getItem,getSingleItem, deleteItem} from '../controllers/items.js'
 const router = express.Router()
 
 
@@ -26,6 +26,5 @@ const upload = multer({
 router.route("/").get(getItem).post(upload.single('file'), addItem )
 router.route("/:id").get(getSingleItem)
 router.route("/:id").delete(deleteItem)
-router.route('/download/:id').get(downloadItem)
 
 export default router

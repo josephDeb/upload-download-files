@@ -47,20 +47,6 @@ const getSingleItem = asyncHandler(async (req, res) => {
     }
 })
 
-const downloadItem = asyncHandler(async (req, res) => {
-    try {
-        const {id} = req.params;
-        const item = await Item.findById(id)
-        if(!item) {
-            throw new Error("Not found")
-        }
-        const file = req.file;
-        const filePath = path.join(__dirname, `..${file}`)
-        return res.download(filePath)
-    } catch (error) {
-        return res.status(500).json("ERROR")
-    }
-})
 
 const deleteItem = asyncHandler(async (req, res) => {
     try {
@@ -77,4 +63,4 @@ const deleteItem = asyncHandler(async (req, res) => {
     }
 })
 
-export {getItem, addItem, downloadItem, getSingleItem,deleteItem}
+export {getItem, addItem, getSingleItem,deleteItem}

@@ -52,7 +52,7 @@ const Section = () => {
               <img src={file} className='object-cover'/>
 
               <div className='absolute h-full w-full flex justify-center items-center gap-5 opacity-0 hover:opacity-100 transition-all duration-500'>
-                 <a target='_blank' rel='noreferrer' href={'/backend/Public/Images/'+dt.file} download><img src={download} className='xl:w-12 cursor-pointer w-8'/></a>
+                 <a target='_blank' rel='noreferrer' href={'http://localhost:8000/Images/'+dt.file} download><img src={download} className='xl:w-12 cursor-pointer w-8'/></a>
                  <img onClick={() => handleDelete(dt._id)} src={trash} className='xl:w-12 cursor-pointer w-8'/>
               </div>
           </SwiperSlide>
