@@ -1,33 +1,28 @@
-import express from 'express'
-import cors from 'cors'
+import express from 'express';
 import dotenv from 'dotenv'
+import cors from 'cors'
+import connectDB from './config/db.js';
+
+import itemsRouter from './routes/items.js'
+
+dotenv.config()
+connectDB()
+
 
 const app = express()
 
-dotenv.config()
+const port =  8000;
 
-const PORT = process.env.PORT || 8000
+app.use(express.json())
+app.use(cors());
 
-app.use(cors({
-
-}))
-
-app.get("/", (req, res) => {
-    res.send("KUMUSTA MUNDO")
+app.get("/", (req ,res) => {
+    res.send(`KUMUSTA MUNDO`)
 })
 
+app.use('/api/items', itemsRouter)
 
 
-
-const start = async () => {
-    try {
-      await connectDB(process.env.MONGO_URI);
-      app.listen(PORT, () => {
-        console.log("Server is running in port");
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  
-  start();
+app.listen(port, (req ,res) => {
+    console.log(`KUMUSTA MUNDO TUMATAKBO ITO SA PORTE ${port}`)
+})
