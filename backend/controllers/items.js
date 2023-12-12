@@ -14,7 +14,7 @@ const getItem = async (req, res) => {
 const addItem = asyncHandler(async (req, res) => {
  try {
     const {name} = req.body
-    const file = req.file.path;
+    const file = req.file.filename;
    
     if(!name) {
        throw new Error("Name is required")
@@ -62,4 +62,19 @@ const downloadItem = asyncHandler(async (req, res) => {
     }
 })
 
-export {getItem, addItem, downloadItem, getSingleItem}
+const deleteItem = asyncHandler(async (req, res) => {
+    try {
+        const user = await Item.findById(req.params.id);
+
+        if(user) {
+            return res.status(404).json("Files not found")
+        }
+        await Item.deleteOne({_id: user._id})
+
+        return res.json({Status: true, message: "File removed"});
+    } catch (error) {
+        return res.status(500).json("ERROR")
+    }
+})
+
+export {getItem, addItem, downloadItem, getSingleItem,deleteItem}

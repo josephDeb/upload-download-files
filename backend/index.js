@@ -19,7 +19,7 @@ app.use(cors());
 app.get("/", (req ,res) => {
     res.send(`KUMUSTA MUNDO`)
 })
-
+app.use(express.static("Public"))
 app.use('/api/items', itemsRouter)
 
 

@@ -4,41 +4,28 @@ import multer from 'multer'
 import path from 'path'
 
 
-import {addItem, getItem, downloadItem, getSingleItem} from '../controllers/items.js'
+import {addItem, getItem, downloadItem, getSingleItem, deleteItem} from '../controllers/items.js'
 const router = express.Router()
 
+
+// image upload
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads')
+        cb(null, 'Public/Images')
     },
     filename: (req, file, cb) => {
         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
     }
 })
-  const fileFilter = (req, file, cb) => {
-    //reject a file if it's not a jpg or png
-    if (
-      file.mimetype === "image/jpeg" ||
-      file.mimetype === "image/png" ||
-      file.mimetype === "application/pdf"
-    ) {
-      cb(null, true);
-    } else {
-      cb(null, false);
-    }
-  };
-  
-  const upload = multer({
-    storage: storage,
-    limits: {
-      fileSize: 1024 * 1024 * 5,
-    },
-    fileFilter: fileFilter,
-  });
+const upload = multer({
+    storage: storage
+})
+// end image upload
 
 
 router.route("/").get(getItem).post(upload.single('file'), addItem )
 router.route("/:id").get(getSingleItem)
+router.route("/:id").delete(deleteItem)
 router.route('/download/:id').get(downloadItem)
 
 export default router
