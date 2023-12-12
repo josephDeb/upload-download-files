@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1ff39b16-cc47-4c4a-9b99-e8cbcf599fe6/d4efd5y-7a8e717c-e5c6-476d-bc45-e71158de9dc9.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzFmZjM5YjE2LWNjNDctNGM0YS05Yjk5LWU4Y2JjZjU5OWZlNlwvZDRlZmQ1eS03YThlNzE3Yy1lNWM2LTQ3NmQtYmM0NS1lNzExNThkZTlkYzkuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.tZbGp7sSjd76U_SQNZLCAdaW0KTIGOhRlCuteKHLliA');
+    background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: 'Orbiter FBS Trial', sans-serif;
+                                                
+}
+
+.container {
+    backdrop-filter: saturate(180%) blur(10px);
+}
+
+.btn {
+    letter-spacing: 5px;
+}
