@@ -1,11 +1,11 @@
 import path from 'path'
 import asyncHandler from '../middlewares/asyncHandler.js';
-import items from '../models/items.js';
+import Item from '../models/item.js';
 
 const getItem = async (req, res) => {
     try {
-        const allItems = await items.find()
-        return res.status(200).json({allItems})
+        const allItem = await Item.find()
+        return res.status(200).json({allItem})
     } catch (error) {
         return res.status(500).json("error")
     }
@@ -20,13 +20,13 @@ const addItem = asyncHandler(async (req, res) => {
        throw new Error("Name is required")
     }
 
-    const existingFile = await items.findOne({name})
+    const existingFile = await Item.findOne({name})
 
     if(existingFile) {
         return res.json({Status: false, Error: "Already exist"})
     }
 
-    const itemFile = await new items({name, file}).save();
+    const itemFile = await new Item({name, file}).save();
     return res.status(201).json({Status: true, itemFile})
  } catch (error) {
     return res.status(500).json({Status: false, Erro: "Something went wrong"})
@@ -36,7 +36,7 @@ const addItem = asyncHandler(async (req, res) => {
 const getSingleItem = asyncHandler(async (req, res) => {
     try {
         const {id} = req.params;
-        const item = await items.findById(id)
+        const item = await Item.findById(id)
         if(!item) {
             return res.status(404).json({Status:false, Error: "NOt found"})
         }
@@ -50,7 +50,7 @@ const getSingleItem = asyncHandler(async (req, res) => {
 const downloadItem = asyncHandler(async (req, res) => {
     try {
         const {id} = req.params;
-        const item = await items.findById(id)
+        const item = await Item.findById(id)
         if(!item) {
             throw new Error("Not found")
         }
