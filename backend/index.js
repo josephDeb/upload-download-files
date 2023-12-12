@@ -16,7 +16,7 @@ const port =  8000;
 app.use(express.json())
 app.use(cors(
     {
-        origin: ["http://localhost:5173"],
+        origin: ["https://upload-download-files-g8oe.vercel.app/"],
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true
         }
@@ -30,5 +30,5 @@ app.use('/api/items', itemsRouter)
 
 
 app.listen(port, (req ,res) => {
-    console.log(`KUMUSTA MUNDO TUMATAKBO ITO SA PORTE ${port}`)
+    console.log(`KUMUSTA MUNDO TUMATAKBO ITO SA PORTE 8000`)
 })

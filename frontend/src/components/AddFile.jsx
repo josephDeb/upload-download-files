@@ -10,7 +10,7 @@ const AddFile = ({ons, setOn}) => {
         const formData = new FormData()
         formData.append("name", name)
         formData.append("file", file)
-        await axios.post("api/items/", formData)
+        await axios.post("https://upload-download-files-two.vercel.app/api/items/", formData)
         .then(res => {
             console.log(res)
             alert("Create")

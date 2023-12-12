@@ -16,7 +16,7 @@ import { Scrollbar } from 'swiper/modules';
 const Section = () => {
     const [data, setData] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:8000/api/items')
+        axios.get('https://upload-download-files-two.vercel.app/api/items')
         .then(res => {
             setData(res.data.allItem)
             console.log(data)
@@ -24,7 +24,7 @@ const Section = () => {
     }, [data.length])
 
     const handleDelete = async (id) => {
-        axios.delete("http://localhost:8000/api/items/"+id)
+        axios.delete("https://upload-download-files-two.vercel.app/api/items/"+id)
         .then(res => {
           console.log(res.data)
           window.location.reload()
