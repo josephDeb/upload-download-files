@@ -66,7 +66,7 @@ const deleteItem = asyncHandler(async (req, res) => {
     try {
         const user = await Item.findById(req.params.id);
 
-        if(user) {
+        if(!user) {
             return res.status(404).json("Files not found")
         }
         await Item.deleteOne({_id: user._id})
