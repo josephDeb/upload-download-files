@@ -29,7 +29,7 @@ const Section = () => {
 
     const handleDelete = async (id) => {
       axios.defaults.withCredentials = true
-        axios.delete("https://upload-download-files-two.vercel.app/api/items/"+id)
+        axios.delete("/api/items/"+id)
         .then(res => {
           window.location.reload()
           console.log(res.data)
@@ -71,7 +71,7 @@ const Section = () => {
               <img src={file} className='object-cover'/>
 
               <div className='absolute h-full w-full flex justify-center items-center gap-5 opacity-0 hover:opacity-100 transition-all duration-500'>
-                <img onClick={() => handleDownload("https://upload-download-files-g8oe.vercel.app/"+dt.file)}  src={download} className='xl:w-12 cursor-pointer w-8'/>
+                <img onClick={() => handleDownload("http://localhost:8000/"+dt.file)}  src={download} className='xl:w-12 cursor-pointer w-8'/>
                  <img onClick={() => handleDelete(dt._id)} src={trash} className='xl:w-12 cursor-pointer w-8'/>
               </div>
           </SwiperSlide>
