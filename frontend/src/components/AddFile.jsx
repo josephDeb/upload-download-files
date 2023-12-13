@@ -15,7 +15,7 @@ const AddFile = ({ons}) => {
         .then(res => {
             console.log(res)
             alert("Create")
-        })
+        }).catch(err => console.log(err))
     }
 
 
