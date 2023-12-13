@@ -4,18 +4,13 @@ import Section from './Section'
 import AddFile from './AddFile'
 const Header = () => {
     
-  const [data, setData] = useState([])
+  const [ons, setOn] = useState(false)
 
   useEffect(() => {
-    axios.defaults.withCredentials = true
-    axios.get("https://upload-download-files-two.vercel.app/api/items")
-    .then(res => {
-        setData(res.data.allItem)
-    })
-    console.log(data)
+    axios.get("https://upload-download-files-two.vercel.app/")
+    .then(res => console.log(res.data))
   }, [])
 
-  const [ons, setOn] = useState(false)
 
   return (
    <>

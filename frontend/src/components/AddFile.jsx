@@ -7,7 +7,6 @@ const AddFile = ({ons}) => {
     const [file, setFile] = useState("")
     const [name, setName] = useState("")
     const handleAdd = async () => {
-      axios.defaults.withCredentials = true
         axios.defaults.withCredentials = true
         const formData = new FormData()
         formData.append("name", name)

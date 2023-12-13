@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import axios from 'axios'
-import { useEffect, useState } from 'react'
 
 import trash from '../../public/trash.png';
 import download from '../../public/download.png';
@@ -12,23 +12,26 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 // import required modules
 import { Scrollbar } from 'swiper/modules';
+import {  useEffect, useState } from 'react';
+
+
 
 const Section = () => {
-    const [data, setData] = useState([])
-    useEffect(() => {
-      axios.defaults.withCredentials = true
-        axios.get('https://upload-download-files-two.vercel.app/api/items')
-        .then(res => {
-            setData(res.data.allItem)
-            console.log(data)
-        })
-    }, [data.length])
+
+  const [data, setData] = useState([])
+
+useEffect(() => {
+  axios.get('http://localhost:8000/api/items')
+  .then(res => {
+      setData(res.data.allItem)
+
+  }).catch(err => console.log(err))
+}, [])
 
     const handleDelete = async (id) => {
       axios.defaults.withCredentials = true
         axios.delete("https://upload-download-files-two.vercel.app/api/items/"+id)
         .then(res => {
-          console.log(res.data)
           window.location.reload()
         })
     }
@@ -47,7 +50,6 @@ const Section = () => {
       })
       
     }
-
   return (
     <div className='max-w-screen-2xl mx-auto flex justify-center items-center h-[530px] w-full'>
 
