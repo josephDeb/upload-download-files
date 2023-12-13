@@ -14,7 +14,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper/modules';
 import {  useEffect, useState } from 'react';
 
-
+import Swal from 'sweetalert2'
 
 const Section = () => {
 
@@ -23,17 +23,31 @@ const Section = () => {
   useEffect(() => {
     axios.get("/api/items")
     .then(res => {
-      console.log(res.data)
+      setData(res.data.allItem)
     }).catch(err=> console.log(err))
   }, [])
 
+
+    
+
     const handleDelete = async (id) => {
-      axios.defaults.withCredentials = true
-        axios.delete("/api/items/"+id)
+        const result = await Swal.fire({
+            title: "Do you really want to delete?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#ed1d24",
+            confirmButtonText: "Yes, delete it!",
+            
+          })
+          axios.defaults.withCredentials = true
+          await axios.delete("/api/items/"+id)
         .then(res => {
-          window.location.reload()
-          console.log(res.data)
-        })
+            if(result.isConfirmed) {
+                window.location.reload()
+                console.log(res)
+              }
+        }).catch(err=> console.log(err))
     }
 
     const handleDownload = async (url) => {
@@ -50,6 +64,7 @@ const Section = () => {
       })
       
     }
+
   return (
     <div className='max-w-screen-2xl mx-auto flex justify-center items-center h-[530px] w-full'>
 
@@ -71,8 +86,8 @@ const Section = () => {
               <img src={file} className='object-cover'/>
 
               <div className='absolute h-full w-full flex justify-center items-center gap-5 opacity-0 hover:opacity-100 transition-all duration-500'>
-                <img onClick={() => handleDownload("http://localhost:8000/"+dt.file)}  src={download} className='xl:w-12 cursor-pointer w-8'/>
-                 <img onClick={() => handleDelete(dt._id)} src={trash} className='xl:w-12 cursor-pointer w-8'/>
+                <img onClick={() => handleDownload("http://localhost:8000/Images/"+dt.file)}  src={download} className='xl:w-12 cursor-pointer w-5'/>
+                 <img onClick={() => handleDelete(dt._id)} src={trash} className='xl:w-12 cursor-pointer w-5'/>
               </div>
           </SwiperSlide>
            })}
