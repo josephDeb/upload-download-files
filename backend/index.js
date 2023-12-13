@@ -4,7 +4,7 @@ import cors from 'cors'
 import connectDB from './config/db.js';
 
 import itemsRouter from './routes/items.js'
-
+import cookieParser from 'cookie-parser'
 dotenv.config()
 connectDB()
 
@@ -14,6 +14,8 @@ const app = express()
 const port =  8000;
 
 app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+app.use(cookieParser())
 app.use(cors(
     {
         origin: ["https://upload-download-files-g8oe.vercel.app/"],
