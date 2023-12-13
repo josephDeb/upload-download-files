@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://upload-download-files-two.vercel.app/",
+        target: "http://localhost:8000/",
         secure: false
       }
     }

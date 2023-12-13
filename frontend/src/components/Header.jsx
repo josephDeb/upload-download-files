@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import { useState } from 'react'
+
 import Section from './Section'
 import AddFile from './AddFile'
 const Header = () => {
     
   const [ons, setOn] = useState(false)
-
-  useEffect(() => {
-    axios.get("https://upload-download-files-two.vercel.app/")
-    .then(res => console.log(res.data))
-  }, [])
 
 
   return (

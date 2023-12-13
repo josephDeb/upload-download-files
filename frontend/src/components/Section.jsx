@@ -20,19 +20,19 @@ const Section = () => {
 
   const [data, setData] = useState([])
 
-useEffect(() => {
-  axios.get('http://localhost:8000/api/items')
-  .then(res => {
-      setData(res.data.allItem)
-
-  }).catch(err => console.log(err))
-}, [])
+  useEffect(() => {
+    axios.get("/api/items")
+    .then(res => {
+      console.log(res.data)
+    }).catch(err=> console.log(err))
+  }, [])
 
     const handleDelete = async (id) => {
       axios.defaults.withCredentials = true
         axios.delete("https://upload-download-files-two.vercel.app/api/items/"+id)
         .then(res => {
           window.location.reload()
+          console.log(res.data)
         })
     }
 
